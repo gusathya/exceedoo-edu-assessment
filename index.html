@@ -1,0 +1,489 @@
+<style>
+:root{--navy:#2E2A5E;--navy-deep:#211e47;--accent:#E8472B;--ok:#1f9d55;--warn:#d98a0b;--bg:#f5f6fa;--card:#fff;--line:#e6e8f0;--text:#23233a;--muted:#6b6e85;--radius:13px;--shadow:0 1px 3px rgba(33,30,71,.06),0 8px 24px rgba(33,30,71,.07)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+#page-content{display:none}
+h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
+#gate{width:100%;min-height:600px;background:linear-gradient(135deg,#2E2A5E,#1a1636);display:flex;align-items:center;justify-content:center;padding:40px 20px}
+#gate .box{background:#fff;border-radius:20px;padding:44px 40px;width:360px;box-shadow:0 40px 80px rgba(0,0,0,.4);text-align:center}
+#gate img{height:40px;margin-bottom:24px}
+#gate h2{font-size:21px;color:var(--navy);margin-bottom:6px}
+#gate p{font-size:13px;color:var(--muted);margin-bottom:28px}
+#gate input{width:100%;border:2px solid var(--line);border-radius:10px;padding:13px 16px;font-size:16px;letter-spacing:.15em;text-align:center;font-family:'Montserrat',sans-serif;color:var(--navy);background:#f7f8fc;transition:.2s}
+#gate input:focus{outline:none;border-color:var(--navy);background:#fff}
+#gate .gerr{color:var(--accent);font-size:12px;font-weight:700;min-height:18px;margin:8px 0 4px}
+#gate button{width:100%;background:linear-gradient(120deg,var(--accent),#ff6b4a);color:#fff;border:none;border-radius:10px;padding:13px;font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:.15s;margin-top:4px}
+#gate button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+#gate .gtag{font-size:11px;color:#b0b2c8;margin-top:20px}
+header{background:linear-gradient(120deg,var(--navy),var(--navy-deep));color:#fff;padding:18px 32px;display:flex;align-items:center;gap:18px;position:sticky;top:0;z-index:50;box-shadow:0 4px 18px rgba(33,30,71,.2)}
+header img{height:36px;background:#fff;padding:6px 10px;border-radius:8px}
+header .ht h1{font-size:17px;margin:0;font-weight:700}
+header .ht p{font-size:12px;color:#c8c9e6;margin:2px 0 0}
+header .sp{flex:1}
+.hbtn{background:var(--accent);color:#fff;border:none;padding:8px 14px;border-radius:8px;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:.15s}
+.hbtn:hover{filter:brightness(1.1)}
+.hbtn.gh{background:rgba(255,255,255,.13)}.hbtn.gh:hover{background:rgba(255,255,255,.22)}
+.prog{background:var(--navy-deep);padding:0 32px 12px}
+.pb{height:6px;background:rgba(255,255,255,.15);border-radius:99px;overflow:hidden}
+.pf{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#ff7a5c)}
+.pl{color:#c8c9e6;font-size:11px;margin-top:5px}
+.wrap{max-width:1200px;margin:0 auto;padding:28px 24px;display:flex;gap:24px;align-items:flex-start}
+nav.side{position:sticky;top:110px;flex:0 0 220px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+nav.side h4{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:4px 8px 10px;font-family:'Montserrat',sans-serif}
+nav.side a{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;color:var(--navy);text-decoration:none;font-size:13px;font-weight:600;font-family:'Montserrat',sans-serif}
+
+nav.side a .nd{width:7px;height:7px;border-radius:99px;background:var(--line);flex:0 0 7px}
+main{flex:1;min-width:0}
+.intro{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px 24px;margin-bottom:24px;box-shadow:var(--shadow);border-left:5px solid var(--accent)}
+.intro h2{font-size:17px;color:var(--navy);margin-bottom:6px}
+.intro p{font-size:14px;color:var(--muted)}
+.conf{display:inline-block;background:#fde9e5;color:var(--accent);font-size:11px;font-weight:700;padding:3px 10px;border-radius:99px;font-family:'Montserrat',sans-serif;margin-bottom:10px}
+.sec{margin-bottom:32px}
+.sec-hd{font-size:17px;color:var(--navy);margin:0 0 16px;display:flex;align-items:center;gap:10px;padding-bottom:9px;border-bottom:2px solid var(--line)}
+.sec-hd .ix{background:var(--navy);color:#fff;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:13px;font-weight:700;flex:0 0 26px}
+.sub-hd{font-size:14px;color:var(--accent);font-weight:700;margin:18px 0 10px;font-family:'Montserrat',sans-serif}
+.atbl{width:100%;border-collapse:collapse;margin-bottom:18px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.atbl thead tr{background:var(--navy)}
+.atbl thead th{color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;padding:11px 16px;text-align:left;letter-spacing:.04em}
+.atbl tbody tr{border-bottom:1px solid var(--line)}
+.atbl tbody tr:last-child{border-bottom:none}
+
+.atbl td{padding:10px 16px;font-size:14px;vertical-align:middle}
+.atbl td:first-child{font-weight:600;color:var(--navy);width:42%;font-size:13.5px}
+.atbl td:last-child input:not([type=checkbox]),.atbl td:last-child textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--text);background:#fcfcfe;resize:vertical;min-height:36px}
+.atbl td:last-child input:focus,.atbl td:last-child textarea:focus{outline:none;border-color:var(--navy);background:#fff}
+.chk-group{display:flex;flex-wrap:wrap;gap:8px}
+.chk-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--navy);font-weight:500;cursor:pointer}
+.chk-item input[type=checkbox]{width:15px;height:15px;accent-color:var(--navy);cursor:pointer}
+.rg{display:flex;gap:14px;flex-wrap:wrap}
+.ri{display:flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer}
+.ri input{accent-color:var(--accent);width:14px;height:14px;cursor:pointer}
+.sr{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sr span{font-size:12px;color:var(--muted);font-weight:600}
+.fin-dash{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);margin-bottom:16px}
+.fin-dash h3{color:var(--navy);font-size:15px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.fin-dash h3 .sub{font-size:11px;color:var(--muted);font-weight:500;font-family:'Source Sans 3',sans-serif}
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px;margin-bottom:20px}
+.kpi{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi .kl{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.kpi .kv{font-size:21px;font-weight:800;color:var(--navy);font-family:'Montserrat',sans-serif;line-height:1}
+.kpi .ku{font-size:10px;color:var(--muted);margin-top:2px}
+.kpi.good .kv{color:var(--ok)}.kpi.warn .kv{color:var(--warn)}.kpi.bad .kv{color:var(--accent)}
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.cw{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px}
+.cw h4{margin:0 0 10px;font-size:12px;color:var(--navy);font-family:'Montserrat',sans-serif}
+.cw canvas{max-height:200px}
+.fi{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:12px;margin-bottom:16px}
+.ff label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:4px;font-family:'Montserrat',sans-serif}
+.ff input[type=number]{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--text);background:#fcfcfe}
+.ff input:focus{outline:none;border-color:var(--navy)}
+.ff .fh{font-size:10px;color:var(--muted);margin-top:2px}
+.st{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.scen{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;color:var(--navy);transition:.13s;font-family:'Montserrat',sans-serif}
+.scen.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.sn{font-size:11px;color:var(--muted)}
+.rr{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;margin-bottom:5px}
+.rc{text-align:center}
+.rc label{font-size:9px;color:var(--muted);display:block;margin-bottom:2px}
+.rc input{width:100%;border:1px solid var(--line);border-radius:5px;padding:4px 1px;text-align:center;font-size:11px;color:var(--navy);background:#fcfcfe}
+.fdiv{font-size:12px;font-weight:700;color:var(--navy);margin:14px 0 10px;font-family:'Montserrat',sans-serif;padding-bottom:4px;border-bottom:1px dashed var(--line)}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rec-item{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}
+.rec-item .rl{font-size:13px;font-weight:600;color:var(--navy)}
+.toast{position:fixed;bottom:18px;right:18px;background:var(--navy);color:#fff;padding:10px 16px;border-radius:9px;font-size:12px;font-weight:600;box-shadow:var(--shadow);opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none;z-index:9999}
+.toast.show{opacity:1;transform:translateY(0)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:28px 20px 50px;border-top:1px solid var(--line);margin-top:10px}
+footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700}
+@media(max-width:900px){nav.side{display:none}.wrap{padding:16px}.cg{grid-template-columns:1fr}.rec-grid{grid-template-columns:1fr}}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<div id="gate">
+  <div class="box">
+    <img src="https://img1.wsimg.com/isteam/ip/b148dcea-ca56-4e99-8c16-c86048966257/Exceedo-final-logo.png/:/rs=h:80/qt=q:95" alt="Exceedoo"/>
+    <h2>Admin Access Only</h2>
+    <p>This document is confidential and restricted to authorised Exceedoo personnel.</p>
+    <input type="password" id="gpw" placeholder="••••••••" onkeydown="if(event.key==='Enter')gLogin()" autofocus/>
+    <div class="gerr" id="gerr"></div>
+    <button onclick="gLogin()">Unlock →</button>
+    <div class="gtag">Together, We Exceed.</div>
+  </div>
+</div>
+
+<div id="page-content">
+<header>
+  <img src="https://img1.wsimg.com/isteam/ip/b148dcea-ca56-4e99-8c16-c86048966257/Exceedo-final-logo.png/:/rs=h:80/qt=q:95" alt="Exceedoo"/>
+  <div class="ht"><h1>Comprehensive Education Business Assessment</h1><p>Pre-Partnership Audit Framework · Exceedoo</p></div>
+  <div class="sp"></div>
+  <button class="hbtn gh" onclick="exportData()">Export JSON</button>
+  <button class="hbtn gh" onclick="document.getElementById('importFile').click()" style="margin-left:8px">Import JSON</button>
+  <button class="hbtn gh" onclick="clearInputs()" style="margin-left:8px">Clear All</button>
+  <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)"/>
+  <button class="hbtn" onclick="printPage()" style="margin-left:8px">Print / PDF</button>
+</header>
+<div class="prog"><div class="pb"><div class="pf" id="pf"></div></div><div class="pl" id="pl">0 of 0 filled</div></div>
+<div class="wrap">
+  <nav class="side" id="sidenav"><h4>Sections</h4></nav>
+  <main id="main">
+    <div class="intro">
+      <div class="conf">2026 · Confidential · Internal Use Only</div>
+      <h2>Pre-Partnership Assessment Framework</h2>
+      <p>Before Exceedoo partners with an education business, the institution undergoes strict evaluation across capability, operational readiness, financial sustainability, and leadership alignment.</p>
+    </div>
+    <div class="sec" id="s1"><h2 class="sec-hd"><span class="ix">1</span>Institution Fundamentals</h2>
+      <div class="sub-hd">1.1 Institution Overview</div>
+      <table class="atbl"><thead><tr><th>Audit Field / Parameter</th><th>Recorded Assessment Data / Notes</th></tr></thead><tbody>
+        <tr><td>Legal Institution Name</td><td><input data-k="1_legal"/></td></tr>
+        <tr><td>Brand Name</td><td><input data-k="1_brand"/></td></tr>
+        <tr><td>Year Established</td><td><input data-k="1_year"/></td></tr>
+        <tr><td>Founder(s) / Director(s)</td><td><input data-k="1_founders"/></td></tr>
+        <tr><td>Campus / Delivery Location(s)</td><td><input data-k="1_locations"/></td></tr>
+        <tr><td>Current Team Size</td><td><input data-k="1_team"/></td></tr>
+        <tr><td>Existing Student Markets / Geographies</td><td><input data-k="1_markets"/></td></tr>
+        <tr><td>Website</td><td><input data-k="1_web"/></td></tr>
+        <tr><td>Social Media Handles</td><td><input data-k="1_social"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">1.2 Vision & Intent</div>
+      <table class="atbl"><thead><tr><th>Strategic Dimension</th><th>Leadership Response & Alignment Analysis</th></tr></thead><tbody>
+        <tr><td>Why was this institution created?</td><td><textarea data-k="1_why"></textarea></td></tr>
+        <tr><td>What problem is it solving?</td><td><textarea data-k="1_problem"></textarea></td></tr>
+        <tr><td>What is the long-term vision?</td><td><textarea data-k="1_vision"></textarea></td></tr>
+        <tr><td>Institution Model Type</td><td><div class="chk-group"><label class="chk-item"><input type="checkbox" data-k="1_m_priv"/> Private</label><label class="chk-item"><input type="checkbox" data-k="1_m_govt"/> Govt-Aided</label><label class="chk-item"><input type="checkbox" data-k="1_m_et"/> Online/EdTech</label><label class="chk-item"><input type="checkbox" data-k="1_m_hyb"/> Hybrid</label><label class="chk-item"><input type="checkbox" data-k="1_m_voc"/> Vocational</label><label class="chk-item"><input type="checkbox" data-k="1_m_uni"/> University</label></div></td></tr>
+      </tbody></table>
+      <div class="sub-hd">1.3 Leadership Alignment</div>
+      <table class="atbl"><thead><tr><th>Alignment Metric</th><th>Evaluator Qualitative Score & Observations</th></tr></thead><tbody>
+        <tr><td>Clarity of Vision</td><td><input data-k="1_la_vision"/></td></tr>
+        <tr><td>Decision-Making Speed</td><td><input data-k="1_la_speed"/></td></tr>
+        <tr><td>Openness to Change</td><td><input data-k="1_la_change"/></td></tr>
+        <tr><td>Long-term Commitment</td><td><input data-k="1_la_commit"/></td></tr>
+        <tr><td>Financial Discipline</td><td><input data-k="1_la_fin"/></td></tr>
+        <tr><td>Operational Maturity</td><td><input data-k="1_la_ops"/></td></tr>
+      </tbody></table>
+    </div>
+    <div class="sec" id="s2"><h2 class="sec-hd"><span class="ix">2</span>Courses & Curriculum Audit</h2>
+      <div class="sub-hd">2.1 Course Assessment</div>
+      <table class="atbl"><thead><tr><th>Course Evaluation Parameter</th><th>Specifications & Audit Findings</th></tr></thead><tbody>
+        <tr><td>Existing Courses / Programmes</td><td><textarea data-k="2_courses"></textarea></td></tr>
+        <tr><td>Flagship / Hero Programme</td><td><input data-k="2_hero"/></td></tr>
+        <tr><td>Course Differentiator</td><td><textarea data-k="2_diff"></textarea></td></tr>
+        <tr><td>Re-enrolment / Referral Evidence</td><td><input data-k="2_reenrol"/></td></tr>
+        <tr><td>Monthly Intake Capacity</td><td><input data-k="2_capacity"/></td></tr>
+        <tr><td>Current Capacity Utilisation (%)</td><td><input data-k="2_util"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">2.2 Curriculum Quality Audit</div>
+      <table class="atbl"><thead><tr><th>Quality Assurance Metric</th><th>Compliance Status & Risk Factors</th></tr></thead><tbody>
+        <tr><td>Course Duration & Structure</td><td><input data-k="2_duration"/></td></tr>
+        <tr><td>Industry Alignment</td><td><input data-k="2_industry"/></td></tr>
+        <tr><td>Accreditations / Certifications Held</td><td><div class="chk-group"><label class="chk-item"><input type="checkbox" data-k="2_ugc"/> UGC</label><label class="chk-item"><input type="checkbox" data-k="2_aicte"/> AICTE</label><label class="chk-item"><input type="checkbox" data-k="2_iso"/> ISO</label><label class="chk-item"><input type="checkbox" data-k="2_nsdc"/> NSDC</label><label class="chk-item"><input type="checkbox" data-k="2_gwo"/> GWO</label><label class="chk-item"><input type="checkbox" data-k="2_naac"/> NAAC</label></div></td></tr>
+        <tr><td>Current Dropout / Non-Completion Rate</td><td><input data-k="2_dropout"/></td></tr>
+        <tr><td>Assessment & Evaluation Process</td><td><textarea data-k="2_assess"></textarea></td></tr>
+        <tr><td>Third-party Validation Available?</td><td><div class="rg"><label class="ri"><input type="radio" name="r_3p" value="Yes"/> Yes</label><label class="ri"><input type="radio" name="r_3p" value="No"/> No</label></div></td></tr>
+      </tbody></table>
+      <div class="sub-hd">2.3 Delivery Readiness</div>
+      <table class="atbl"><thead><tr><th>Operational Readiness Factor</th><th>Infrastructure Audit Details</th></tr></thead><tbody>
+        <tr><td>SOP Documentation</td><td><input data-k="2_sop"/></td></tr>
+        <tr><td>Content / Curriculum Consistency</td><td><input data-k="2_consistency"/></td></tr>
+        <tr><td>Faculty Dependency Risk</td><td><input data-k="2_faculty_risk"/></td></tr>
+        <tr><td>LMS / Platform Stability</td><td><input data-k="2_lms"/></td></tr>
+        <tr><td>Learning Material Procurement</td><td><input data-k="2_materials"/></td></tr>
+        <tr><td>Scalability Readiness</td><td><input data-k="2_scale"/></td></tr>
+        <tr><td>Online / Hybrid Delivery Readiness</td><td><input data-k="2_online"/></td></tr>
+      </tbody></table>
+    </div>
+    <div class="sec" id="s3"><h2 class="sec-hd"><span class="ix">3</span>Brand Audit</h2>
+      <div class="sub-hd">3.1 Brand Positioning</div>
+      <table class="atbl"><thead><tr><th>Positioning Component</th><th>Brand Identity Profile</th></tr></thead><tbody>
+        <tr><td>What does this institution stand for?</td><td><textarea data-k="3_stand"></textarea></td></tr>
+        <tr><td>Who is the ideal student profile?</td><td><textarea data-k="3_student"></textarea></td></tr>
+        <tr><td>Why should students trust this institution?</td><td><textarea data-k="3_trust"></textarea></td></tr>
+        <tr><td>What emotional space does the brand own?</td><td><textarea data-k="3_emotion"></textarea></td></tr>
+        <tr><td>What is the brand NOT?</td><td><textarea data-k="3_not"></textarea></td></tr>
+      </tbody></table>
+      <div class="sub-hd">3.2 Visual Identity Audit</div>
+      <table class="atbl"><thead><tr><th>Visual Component</th><th>Aesthetic Score & Market Alignment Notes</th></tr></thead><tbody>
+        <tr><td>Logo Quality</td><td><input data-k="3_logo"/></td></tr>
+        <tr><td>Website Appeal</td><td><input data-k="3_website"/></td></tr>
+        <tr><td>Marketing Collateral Quality</td><td><input data-k="3_collat"/></td></tr>
+        <tr><td>Photography / Video Content</td><td><input data-k="3_photo"/></td></tr>
+        <tr><td>Brand Consistency</td><td><input data-k="3_consist"/></td></tr>
+        <tr><td>Premium Perception</td><td><input data-k="3_premium"/></td></tr>
+        <tr><td>Modern Appeal</td><td><input data-k="3_modern"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">3.3 Competitive Positioning</div>
+      <table class="atbl"><thead><tr><th>Competitive Parameter</th><th>Market Variance vs Top Tier Alternatives</th></tr></thead><tbody>
+        <tr><td>Top Competitors</td><td><textarea data-k="3_comp"></textarea></td></tr>
+        <tr><td>Fee Comparison</td><td><input data-k="3_fees"/></td></tr>
+        <tr><td>Reach / Enrolment Strength</td><td><input data-k="3_reach"/></td></tr>
+        <tr><td>Curriculum Comparison</td><td><input data-k="3_curric"/></td></tr>
+        <tr><td>Brand Recall</td><td><input data-k="3_recall"/></td></tr>
+        <tr><td>Programme Differentiation</td><td><input data-k="3_progdiff"/></td></tr>
+      </tbody></table>
+    </div>
+    <div class="sec" id="s4"><h2 class="sec-hd"><span class="ix">4</span>Enrolment & Outreach Audit</h2>
+      <div class="sub-hd">4.1 Existing Enrolment Channels</div>
+      <table class="atbl"><thead><tr><th>Enrolment Channel</th><th>Current Penetration, Volume & Revenue Split</th></tr></thead><tbody>
+        <tr><td>Direct Walk-ins / Campus</td><td><input data-k="4_walkin"/></td></tr>
+        <tr><td>School / College Tie-ups</td><td><input data-k="4_school"/></td></tr>
+        <tr><td>Website / Online Enquiries</td><td><input data-k="4_online"/></td></tr>
+        <tr><td>Social Media</td><td><input data-k="4_social"/></td></tr>
+        <tr><td>Agent / Counsellor Network</td><td><input data-k="4_agent"/></td></tr>
+        <tr><td>Corporate / B2B Enrolments</td><td><input data-k="4_corp"/></td></tr>
+        <tr><td>Government / Scholarship Schemes</td><td><input data-k="4_govt"/></td></tr>
+        <tr><td>International Students</td><td><input data-k="4_intl"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">4.2 Enrolment Performance</div>
+      <table class="atbl"><thead><tr><th>Financial KPI</th><th>Metrics / Hard Data</th></tr></thead><tbody>
+        <tr><td>Monthly Enrolment Volume</td><td><input data-k="4_vol"/></td></tr>
+        <tr><td>Monthly Revenue</td><td><input data-k="4_rev"/></td></tr>
+        <tr><td>Average Course Value (ACV)</td><td><input data-k="4_acv"/></td></tr>
+        <tr><td>Gross Margin (%)</td><td><input data-k="4_gm"/></td></tr>
+        <tr><td>Net Margin (%)</td><td><input data-k="4_nm"/></td></tr>
+        <tr><td>Re-enrolment / Referral Rate</td><td><input data-k="4_reenrol2"/></td></tr>
+        <tr><td>Cost Per Enrolment (CPE)</td><td><input data-k="4_cpe"/></td></tr>
+        <tr><td>Top-performing Geography</td><td><input data-k="4_geo"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">4.3 Outreach Strength</div>
+      <table class="atbl"><thead><tr><th>Outreach Metric</th><th>Constraints & Risk Assessment</th></tr></thead><tbody>
+        <tr><td>Number of Channel Partners</td><td><input data-k="4_partners"/></td></tr>
+        <tr><td>Active Schools / Colleges Reached</td><td><input data-k="4_schools"/></td></tr>
+        <tr><td>Current City / Region Presence</td><td><input data-k="4_cities"/></td></tr>
+        <tr><td>Outreach Bottlenecks</td><td><textarea data-k="4_bottleneck"></textarea></td></tr>
+        <tr><td>Fee Collection / Credit Issues</td><td><input data-k="4_fees2"/></td></tr>
+        <tr><td>Dropout / Non-completion Issues</td><td><input data-k="4_dropout2"/></td></tr>
+        <tr><td>Student Feedback Summary</td><td><textarea data-k="4_feedback"></textarea></td></tr>
+      </tbody></table>
+    </div>
+    <div class="sec" id="s5"><h2 class="sec-hd"><span class="ix">5</span>Marketing Audit</h2>
+      <div class="sub-hd">5.1 Current Marketing Activities</div>
+      <table class="atbl"><thead><tr><th>Marketing Vertical</th><th>Current Spend, Playbook & ROI Overview</th></tr></thead><tbody>
+        <tr><td>Social Media Presence</td><td><textarea data-k="5_social"></textarea></td></tr>
+        <tr><td>Alumni / Influencer Marketing</td><td><input data-k="5_influencer"/></td></tr>
+        <tr><td>Paid Ads (Meta / Google)</td><td><input data-k="5_ads"/></td></tr>
+        <tr><td>Campus Activations / Open Days</td><td><input data-k="5_campus"/></td></tr>
+        <tr><td>Institutional Promotions</td><td><input data-k="5_promo"/></td></tr>
+        <tr><td>Education Fairs / Exhibitions</td><td><input data-k="5_fairs"/></td></tr>
+        <tr><td>PR & Media Relations</td><td><input data-k="5_pr"/></td></tr>
+        <tr><td>Community / Alumni Building</td><td><input data-k="5_community"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">5.2 Digital Presence Audit</div>
+      <table class="atbl"><thead><tr><th>Digital Parameter</th><th>Platform Performance Metrics</th></tr></thead><tbody>
+        <tr><td>Instagram / LinkedIn Followers</td><td><input data-k="5_followers"/></td></tr>
+        <tr><td>Engagement Rate</td><td><input data-k="5_engage"/></td></tr>
+        <tr><td>Website Traffic (Monthly)</td><td><input data-k="5_traffic"/></td></tr>
+        <tr><td>Enquiry Conversion Rate (%)</td><td><input data-k="5_conv"/></td></tr>
+        <tr><td>Content Consistency</td><td><input data-k="5_content"/></td></tr>
+        <tr><td>Brand Storytelling Quality</td><td><input data-k="5_story"/></td></tr>
+        <tr><td>Student Review Quality</td><td><input data-k="5_reviews"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">5.3 Student Understanding</div>
+      <table class="atbl"><thead><tr><th>Consumer Insight Factor</th><th>Target Audience Sentiments & Data</th></tr></thead><tbody>
+        <tr><td>Who typically enrols?</td><td><textarea data-k="5_who"></textarea></td></tr>
+        <tr><td>Why do they enrol?</td><td><textarea data-k="5_why"></textarea></td></tr>
+        <tr><td>Why do students not complete or return?</td><td><textarea data-k="5_whynot"></textarea></td></tr>
+        <tr><td>Top student / parent objections</td><td><textarea data-k="5_obj"></textarea></td></tr>
+        <tr><td>Market perception of the institution</td><td><textarea data-k="5_percep"></textarea></td></tr>
+      </tbody></table>
+    </div>
+    <div class="sec" id="s6"><h2 class="sec-hd"><span class="ix">6</span>Financial Audit</h2>
+      <div class="sub-hd">6.1 Financial Health</div>
+      <table class="atbl"><thead><tr><th>Balance Sheet Parameter</th><th>Fiscal Verification / Audit Data</th></tr></thead><tbody>
+        <tr><td>Monthly Burn Rate</td><td><input data-k="6_burn"/></td></tr>
+        <tr><td>Monthly Revenue (Actual)</td><td><input data-k="6_rev"/></td></tr>
+        <tr><td>Break-even Status</td><td><input data-k="6_be"/></td></tr>
+        <tr><td>Working Capital Available</td><td><input data-k="6_wc"/></td></tr>
+        <tr><td>Outstanding Debt / Liabilities</td><td><input data-k="6_debt"/></td></tr>
+        <tr><td>Fee Collection Efficiency (%)</td><td><input data-k="6_fee_eff"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">6.2 Growth Investment Readiness</div>
+      <table class="atbl"><thead><tr><th>CapEx / OpEx Focus Area</th><th>Available Capital / Projected Allocation</th></tr></thead><tbody>
+        <tr><td>Branding Budget</td><td><input data-k="6_brand_bud"/></td></tr>
+        <tr><td>Enrolment / Sales Budget</td><td><input data-k="6_sales_bud"/></td></tr>
+        <tr><td>Faculty Building Budget</td><td><input data-k="6_faculty_bud"/></td></tr>
+        <tr><td>Marketing Budget</td><td><input data-k="6_mkt_bud"/></td></tr>
+        <tr><td>Technology / LMS Budget</td><td><input data-k="6_tech_bud"/></td></tr>
+        <tr><td>Infrastructure Budget</td><td><input data-k="6_infra_bud"/></td></tr>
+        <tr><td>Content Development Budget</td><td><input data-k="6_content_bud"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">6.3 Financial Discipline Check</div>
+      <table class="atbl"><thead><tr><th>Discipline Metric</th><th>Evaluator Assessment / Internal Controls Level</th></tr></thead><tbody>
+        <tr><td>Fee Pricing Discipline</td><td><input data-k="6_fd_price"/></td></tr>
+        <tr><td>Expense Control</td><td><input data-k="6_fd_expense"/></td></tr>
+        <tr><td>Data Tracking Systems</td><td><input data-k="6_fd_data"/></td></tr>
+        <tr><td>Forecasting Capability</td><td><input data-k="6_fd_forecast"/></td></tr>
+        <tr><td>Investment Mindset</td><td><input data-k="6_fd_invest"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">6.4 Live Financial Projection Dashboard</div>
+      <div class="fin-dash">
+        <h3>📊 Revenue & Profitability Model <span class="sub">— edit assumptions to refresh charts instantly</span></h3>
+        <div class="st"><button class="scen active" data-s="base" onclick="setScen('base')">Base</button><button class="scen" data-s="conservative" onclick="setScen('conservative')">Conservative</button><button class="scen" data-s="aggressive" onclick="setScen('aggressive')">Aggressive</button></div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kl">Year-1 Revenue</div><div class="kv" id="fkpi-rev">—</div><div class="ku">projected</div></div>
+          <div class="kpi"><div class="kl">Gross Profit</div><div class="kv" id="fkpi-gp">—</div><div class="ku">after costs</div></div>
+          <div class="kpi"><div class="kl">GP Margin</div><div class="kv" id="fkpi-margin">—</div></div>
+          <div class="kpi" id="fkpi-be-card"><div class="kl">Break-even</div><div class="kv" id="fkpi-be">—</div><div class="ku">cumulative</div></div>
+          <div class="kpi"><div class="kl">Students / Year</div><div class="kv" id="fkpi-studs">—</div></div>
+          <div class="kpi"><div class="kl">Avg Fee</div><div class="kv" id="fkpi-fee">—</div><div class="ku">blended</div></div>
+        </div>
+        <div class="cg">
+          <div class="cw"><h4>Revenue vs Cost (₹k / month)</h4><canvas id="cRev"></canvas></div>
+          <div class="cw"><h4>Course Revenue Mix (%)</h4><canvas id="cMix"></canvas></div>
+          <div class="cw"><h4>Monthly Gross Profit (₹k)</h4><canvas id="cPL"></canvas></div>
+          <div class="cw"><h4>Cumulative Cash Position (₹k)</h4><canvas id="cCash"></canvas></div>
+        </div>
+        <h3 style="margin-top:4px">⚙️ Assumptions <span class="sub">— all fields editable</span></h3>
+        <div class="fdiv">Course Fees (₹)</div>
+        <div class="fi">
+          <div class="ff"><label>Short Course Fee</label><input type="number" data-fk="fee_short"/></div>
+          <div class="ff"><label>Medium Course Fee</label><input type="number" data-fk="fee_medium"/></div>
+          <div class="ff"><label>Diploma / Advanced Fee</label><input type="number" data-fk="fee_diploma"/></div>
+          <div class="ff"><label>eLearning / Module Fee</label><input type="number" data-fk="fee_elearn"/></div>
+        </div>
+        <div class="fdiv">Course Mix (% of monthly students)</div>
+        <div class="fi">
+          <div class="ff"><label>Short Course %</label><input type="number" data-fk="mix_short"/></div>
+          <div class="ff"><label>Medium Course %</label><input type="number" data-fk="mix_medium"/></div>
+          <div class="ff"><label>Diploma %</label><input type="number" data-fk="mix_diploma"/></div>
+          <div class="ff"><label>eLearning %</label><input type="number" data-fk="mix_elearn"/></div>
+        </div>
+        <div class="fdiv">Enrolment & Recovery</div>
+        <div class="fi">
+          <div class="ff"><label>Target Students / Month</label><input type="number" data-fk="students_pm"/></div>
+          <div class="ff"><label>Financed Students %</label><input type="number" data-fk="nbfc_pct"/></div>
+          <div class="ff"><label>Cash Recovery Month 1 %</label><input type="number" data-fk="recovery_pct"/></div>
+          <div class="ff"><label>Seed Investment (₹)</label><input type="number" data-fk="seed"/></div>
+        </div>
+        <div class="fdiv">Monthly Operating Costs (₹)</div>
+        <div class="fi">
+          <div class="ff"><label>Faculty / Trainer</label><input type="number" data-fk="cost_faculty"/></div>
+          <div class="ff"><label>Venue / Infrastructure</label><input type="number" data-fk="cost_venue"/></div>
+          <div class="ff"><label>Content / LMS</label><input type="number" data-fk="cost_content"/></div>
+          <div class="ff"><label>Admin / Operations</label><input type="number" data-fk="cost_admin"/></div>
+          <div class="ff"><label>Sales & Marketing</label><input type="number" data-fk="cost_sales"/></div>
+        </div>
+        <div class="fdiv">Enrolment Ramp — % of target, Month 1–12</div>
+        <div class="rr" id="ramp-row"></div>
+      </div>
+    </div>
+    <div class="sec" id="s7"><h2 class="sec-hd"><span class="ix">7</span>Operations & Team Audit</h2>
+      <div class="sub-hd">7.1 Team Capability</div>
+      <table class="atbl"><thead><tr><th>Department</th><th>Headcount, Competency Level & Structural Gaps</th></tr></thead><tbody>
+        <tr><td>Academic / Faculty Team</td><td><textarea data-k="7_academic"></textarea></td></tr>
+        <tr><td>Admissions / Sales Team</td><td><textarea data-k="7_admissions"></textarea></td></tr>
+        <tr><td>Marketing Team</td><td><textarea data-k="7_marketing"></textarea></td></tr>
+        <tr><td>Operations Team</td><td><textarea data-k="7_ops"></textarea></td></tr>
+        <tr><td>Quality / Accreditation Team</td><td><textarea data-k="7_quality"></textarea></td></tr>
+        <tr><td>Finance Team</td><td><textarea data-k="7_finance"></textarea></td></tr>
+      </tbody></table>
+      <div class="sub-hd">7.2 Operational Bottlenecks</div>
+      <table class="atbl"><thead><tr><th>Bottleneck Classification</th><th>Critical Process Drag Factors & Constraints</th></tr></thead><tbody>
+        <tr><td>Biggest Operational Challenge</td><td><textarea data-k="7_b_ops"></textarea></td></tr>
+        <tr><td>Biggest Enrolment Challenge</td><td><textarea data-k="7_b_enrol"></textarea></td></tr>
+        <tr><td>Biggest Leadership Challenge</td><td><textarea data-k="7_b_lead"></textarea></td></tr>
+        <tr><td>Biggest Market Challenge</td><td><textarea data-k="7_b_market"></textarea></td></tr>
+        <tr><td>Biggest Internal Inefficiency</td><td><textarea data-k="7_b_ineff"></textarea></td></tr>
+      </tbody></table>
+    </div>
+    <div class="sec" id="s8"><h2 class="sec-hd"><span class="ix">8</span>Market Readiness & Scale Potential</h2>
+      <div class="sub-hd">8.1 Scale Readiness</div>
+      <table class="atbl"><thead><tr><th>Readiness Pillar</th><th>Vulnerability vs Scale Enablement Analysis</th></tr></thead><tbody>
+        <tr><td>Course-Market Fit Status</td><td><input data-k="8_cmf"/></td></tr>
+        <tr><td>Brand Readiness</td><td><input data-k="8_brand"/></td></tr>
+        <tr><td>Delivery / Infrastructure Readiness</td><td><input data-k="8_delivery"/></td></tr>
+        <tr><td>Outreach / Enrolment Readiness</td><td><input data-k="8_outreach"/></td></tr>
+        <tr><td>Team Maturity</td><td><input data-k="8_team"/></td></tr>
+        <tr><td>Leadership Alignment Level</td><td><input data-k="8_leadership"/></td></tr>
+        <tr><td>Scalability Ceiling</td><td><input data-k="8_ceiling"/></td></tr>
+      </tbody></table>
+      <div class="sub-hd">8.2 Strategic Questions</div>
+      <table class="atbl"><thead><tr><th>Core Strategic Imperative</th><th>Deep-Dive Evaluation Notes</th></tr></thead><tbody>
+        <tr><td>Why should this institution win?</td><td><textarea data-k="8_why_win"></textarea></td></tr>
+        <tr><td>Why now? (Market Timing)</td><td><textarea data-k="8_why_now"></textarea></td></tr>
+        <tr><td>What happens if the institution does not evolve in 24 months?</td><td><textarea data-k="8_no_evolve"></textarea></td></tr>
+        <tr><td>What unfair advantage does it possess?</td><td><textarea data-k="8_advantage"></textarea></td></tr>
+        <tr><td>Is the institution ready for immediate transformation?</td><td><textarea data-k="8_ready"></textarea></td></tr>
+      </tbody></table>
+    </div>
+    <div class="sec" id="s9"><h2 class="sec-hd"><span class="ix">9</span>Exceedoo Internal Evaluation</h2>
+      <div style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:14px;font-family:'Montserrat',sans-serif">⚠ To be completed by Exceedoo evaluators only</div>
+      <div class="sub-hd">9.1 Scoring Dashboard</div>
+      <table class="atbl"><thead><tr><th>Exceedoo Metric</th><th>Internal Risk & Potential Tier Alignment</th></tr></thead><tbody>
+        <tr><td>Leadership Clarity</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_lc" value="Low"/> Low</label><label class="ri"><input type="radio" name="sc_lc" value="Medium"/> Medium</label><label class="ri"><input type="radio" name="sc_lc" value="High"/> High</label><span>Notes:</span><input data-k="9_lc" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
+        <tr><td>Strategic Maturity</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_sm" value="Low"/> Low</label><label class="ri"><input type="radio" name="sc_sm" value="Medium"/> Medium</label><label class="ri"><input type="radio" name="sc_sm" value="High"/> High</label><span>Notes:</span><input data-k="9_sm" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
+        <tr><td>Brand Potential</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_bp" value="Low"/> Low</label><label class="ri"><input type="radio" name="sc_bp" value="Medium"/> Medium</label><label class="ri"><input type="radio" name="sc_bp" value="High"/> High</label><span>Notes:</span><input data-k="9_bp" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
+        <tr><td>Scalability Potential</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_sp" value="Low"/> Low</label><label class="ri"><input type="radio" name="sc_sp" value="Medium"/> Medium</label><label class="ri"><input type="radio" name="sc_sp" value="High"/> High</label><span>Notes:</span><input data-k="9_sp" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
+        <tr><td>Risk Level</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_rl" value="High"/> High</label><label class="ri"><input type="radio" name="sc_rl" value="Medium"/> Medium</label><label class="ri"><input type="radio" name="sc_rl" value="Low"/> Low</label><span>Notes:</span><input data-k="9_rl" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
+        <tr><td>Execution Complexity</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_ec" value="High"/> High</label><label class="ri"><input type="radio" name="sc_ec" value="Medium"/> Medium</label><label class="ri"><input type="radio" name="sc_ec" value="Low"/> Low</label><span>Notes:</span><input data-k="9_ec" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
+        <tr><td>Market Opportunity</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_mo" value="Limited"/> Limited</label><label class="ri"><input type="radio" name="sc_mo" value="Moderate"/> Moderate</label><label class="ri"><input type="radio" name="sc_mo" value="Expansive"/> Expansive</label><span>Notes:</span><input data-k="9_mo" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
+        <tr><td>Operational Stability</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_os" value="Unstable"/> Unstable</label><label class="ri"><input type="radio" name="sc_os" value="Developing"/> Developing</label><label class="ri"><input type="radio" name="sc_os" value="Robust"/> Robust</label><span>Notes:</span><input data-k="9_os" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
+      </tbody></table>
+    </div>
+    <div class="sec" id="srec"><h2 class="sec-hd"><span class="ix" style="background:var(--ok)">✓</span>Final Recommendation Matrix</h2>
+      <div class="rec-grid">
+        <div class="rec-item"><span class="rl">Ready for Immediate Scale</span><div class="rg"><label class="ri"><input type="radio" name="rec_1" value="Yes"/> Yes</label><label class="ri"><input type="radio" name="rec_1" value="No"/> No</label></div></div>
+        <div class="rec-item"><span class="rl">Needs Restructuring First</span><div class="rg"><label class="ri"><input type="radio" name="rec_2" value="Yes"/> Yes</label><label class="ri"><input type="radio" name="rec_2" value="No"/> No</label></div></div>
+        <div class="rec-item"><span class="rl">Requires Operational Correction</span><div class="rg"><label class="ri"><input type="radio" name="rec_3" value="Yes"/> Yes</label><label class="ri"><input type="radio" name="rec_3" value="No"/> No</label></div></div>
+        <div class="rec-item"><span class="rl">Requires Branding Overhaul</span><div class="rg"><label class="ri"><input type="radio" name="rec_4" value="Yes"/> Yes</label><label class="ri"><input type="radio" name="rec_4" value="No"/> No</label></div></div>
+        <div class="rec-item"><span class="rl">Requires Curriculum Refinement</span><div class="rg"><label class="ri"><input type="radio" name="rec_5" value="Yes"/> Yes</label><label class="ri"><input type="radio" name="rec_5" value="No"/> No</label></div></div>
+        <div class="rec-item" style="border:2px solid var(--navy)"><span class="rl" style="color:var(--accent)">Suitable for Exceedoo Partnership</span><div class="rg"><label class="ri"><input type="radio" name="rec_6" value="Yes"/> Yes</label><label class="ri"><input type="radio" name="rec_6" value="No"/> No</label></div></div>
+      </div>
+      <div style="background:var(--navy);color:#fff;border-radius:var(--radius);padding:20px 24px;margin-top:18px;text-align:center;font-size:14px;line-height:1.7">
+        <em>Scaling an education business is not about doing marketing. It is about aligning Curriculum, Brand, Enrolment Systems, Faculty, Story, Operations, and Leadership Mindset.</em><br/>
+        <strong style="font-family:'Montserrat',sans-serif;font-size:13px">Exceedoo is committed to helping education businesses lead with purpose.</strong>
+      </div>
+    </div>
+    <footer><div class="ft">Together, We Exceed.</div><div style="margin-top:4px">Exceedoo · Blending Engineering and Creative Intelligence</div><div style="font-size:11px;color:var(--accent);font-weight:600;margin-top:6px">2026 · Confidential · Internal Use Only</div></footer>
+  </main>
+</div>
+</div>
+<div class="toast" id="toast">Saved ✓</div>
+
+<script>
+(function(){
+  const PASS='Exceedoo2025',SK='exc_auth_v1';
+  const gate=document.getElementById('gate');
+  function unlock(){gate.style.display='none';document.getElementById('page-content').style.display='block';try{window.scrollTo(0,0)}catch(e){}try{window.parent.scrollTo(0,0)}catch(e){}}
+  try{if(sessionStorage.getItem(SK)==='1'){unlock();return}}catch(e){}
+  window.gLogin=function(){
+    const v=document.getElementById('gpw').value;
+    if(v===PASS){try{sessionStorage.setItem(SK,'1')}catch(e){}unlock()}
+    else{const e=document.getElementById('gerr');e.textContent='Wrong password.';document.getElementById('gpw').value='';document.getElementById('gpw').focus();setTimeout(()=>e.textContent='',2500)}
+  };
+  setTimeout(()=>{try{document.getElementById('gpw').focus()}catch(e){}},150);
+})();
+const gid=id=>document.getElementById(id),qsa=s=>document.querySelectorAll(s);
+const f10={size:10},lo={position:'bottom',labels:{font:f10}};
+const SK='edu_assess_v1',FK='edu_fm_v1';
+let store={};try{store=JSON.parse(localStorage.getItem(SK)||'{}')}catch(e){}
+const FD={fee_short:18000,fee_medium:90000,fee_diploma:300000,fee_elearn:5000,mix_short:50,mix_medium:30,mix_diploma:10,mix_elearn:10,students_pm:25,nbfc_pct:70,recovery_pct:20,seed:1500000,cost_faculty:80000,cost_venue:40000,cost_content:20000,cost_admin:60000,cost_sales:50000,ramp:[20,30,45,55,65,72,78,82,88,92,96,100],scenario:'base'};
+let fm={};try{fm=JSON.parse(localStorage.getItem(FK)||'{}')}catch(e){}
+Object.keys(FD).forEach(k=>{if(fm[k]===undefined)fm[k]=FD[k]});
+function saveStore(){try{localStorage.setItem(SK,JSON.stringify(store))}catch(e){}showToast();updateProg()}
+function saveFM(){try{localStorage.setItem(FK,JSON.stringify(fm))}catch(e){}updateCharts()}
+let tT;
+function showToast(){const t=gid('toast');t.classList.add('show');clearTimeout(tT);tT=setTimeout(()=>t.classList.remove('show'),900)}
+const nav=gid('sidenav');
+[['s1','1. Institution'],['s2','2. Courses & Curriculum'],['s3','3. Brand Audit'],['s4','4. Enrolment & Outreach'],['s5','5. Marketing'],['s6','6. Financial Audit ₹'],['s7','7. Operations & Team'],['s8','8. Market Readiness'],['s9','9. Exceedoo Evaluation'],['srec','✓ Recommendation']].forEach(([id,l])=>{const a=document.createElement('a');a.href='#'+id;a.innerHTML=`<span class="nd"></span>${l}`;nav.appendChild(a)});
+function updateProg(){const all=qsa('#main input[data-k],#main textarea[data-k]');let d=0;all.forEach(el=>{if((el.value||'').trim())d++});const p=all.length?Math.round(d/all.length*100):0;gid('pf').style.width=p+'%';gid('pl').textContent=`${d} of ${all.length} fields filled · ${p}% complete`}
+function restoreStore(){qsa('[data-k]').forEach(el=>{const k=el.dataset.k;if(store[k]!==undefined){if(el.type==='checkbox')el.checked=store[k];else el.value=store[k]}});qsa('input[type=radio]').forEach(r=>{if(store['radio_'+r.name]===r.value)r.checked=true})}
+function wireEvents(){qsa('[data-k]').forEach(el=>{const ev=el.tagName==='TEXTAREA'||el.type==='text'||el.type==='number'?'input':'change';el.addEventListener(ev,()=>{store[el.dataset.k]=el.type==='checkbox'?el.checked:el.value;saveStore()})});qsa('input[type=radio]').forEach(r=>{r.addEventListener('change',()=>{store['radio_'+r.name]=r.value;saveStore()})});qsa('input[data-fk]').forEach(inp=>{inp.addEventListener('input',()=>{fm[inp.dataset.fk]=+inp.value||0;saveFM()})})}
+function restoreFM(){qsa('input[data-fk]').forEach(inp=>{inp.value=fm[inp.dataset.fk]!==undefined?fm[inp.dataset.fk]:FD[inp.dataset.fk]||0});qsa('.scen').forEach(b=>b.classList.toggle('active',b.dataset.s===fm.scenario))}
+function renderRamp(){const row=gid('ramp-row');if(!row)return;row.innerHTML=fm.ramp.map((v,i)=>`<div class="rc"><label>M${i+1}</label><input type="number" value="${v}" data-ri="${i}"/></div>`).join('');row.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',e=>{fm.ramp[+e.target.dataset.ri]=+e.target.value||0;saveFM()}))}
+let cRev,cMix,cPL,cCash;
+function calcFM(){const mult={conservative:.7,base:1,aggressive:1.3}[fm.scenario]||1;const L=['M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12'];const aF=fm.fee_short*fm.mix_short/100+fm.fee_medium*fm.mix_medium/100+fm.fee_diploma*fm.mix_diploma/100+fm.fee_elearn*fm.mix_elearn/100;const rA=[],cA=[],gA=[],caA=[];let cum=-fm.seed;for(let i=0;i<12;i++){const r=(fm.ramp[i]||100)/100,s=Math.round(fm.students_pm*mult*r),rev=s*aF*((fm.recovery_pct+(fm.nbfc_pct*(100-fm.recovery_pct)/100))/100),cost=fm.cost_faculty+fm.cost_venue+fm.cost_content+fm.cost_admin+fm.cost_sales+s*500,gp=rev-cost;cum+=gp;rA.push(Math.round(rev/1000));cA.push(Math.round(cost/1000));gA.push(Math.round(gp/1000));caA.push(Math.round(cum/1000))}const tR=rA.reduce((a,b)=>a+b,0),tG=gA.reduce((a,b)=>a+b,0),beM=gA.findIndex((_,i)=>gA.slice(0,i+1).reduce((a,b)=>a+b,0)>=0);return{L,rA,cA,gA,caA,tR,tG,beM,aF}}
+function fmt(v){const l=v/100;return Math.abs(l)>=100?'₹'+(l/100).toFixed(1)+'Cr':'₹'+l.toFixed(1)+'L'}
+function updateCharts(){const m=calcFM();gid('fkpi-rev').textContent=fmt(m.tR*1000);gid('fkpi-gp').textContent=fmt(m.tG*1000);gid('fkpi-margin').textContent=m.tR?Math.round(m.tG/m.tR*100)+'%':'—';gid('fkpi-be').textContent=m.beM>=0?'Month '+(m.beM+1):'Year 2+';gid('fkpi-studs').textContent=Math.round(fm.students_pm*({conservative:.7,base:1,aggressive:1.3}[fm.scenario]||1)*12)+' /yr';gid('fkpi-fee').textContent='₹'+Math.round(m.aF/1000)+'k';gid('fkpi-be-card').className='kpi '+(m.beM>=0&&m.beM<6?'good':m.beM>=6?'warn':'bad');const nv='#2E2A5E',ac='#E8472B',ok='#1f9d55',wn='#d98a0b';
+if(cRev){cRev.data.datasets[0].data=m.rA;cRev.data.datasets[1].data=m.cA;cRev.update()}else cRev=new Chart(gid('cRev'),{type:'bar',data:{labels:m.L,datasets:[{label:'Revenue (₹k)',data:m.rA,backgroundColor:nv+'cc',borderRadius:4},{label:'Cost (₹k)',data:m.cA,backgroundColor:ac+'88',borderRadius:4}]},options:{plugins:{legend:{...lo}},scales:{y:{ticks:{callback:v=>'₹'+v+'k',font:f10}}}}});
+if(cPL){cPL.data.datasets[0].data=m.gA;cPL.update()}else cPL=new Chart(gid('cPL'),{type:'line',data:{labels:m.L,datasets:[{label:'Monthly GP (₹k)',data:m.gA,borderColor:ok,backgroundColor:ok+'22',fill:true,tension:.4,pointRadius:3}]},options:{plugins:{legend:{...lo}},scales:{y:{ticks:{callback:v=>'₹'+v+'k',font:f10}}}}});
+if(cCash){cCash.data.datasets[0].data=m.caA;cCash.update()}else cCash=new Chart(gid('cCash'),{type:'line',data:{labels:m.L,datasets:[{label:'Cumulative Cash (₹k)',data:m.caA,borderColor:wn,backgroundColor:wn+'22',fill:true,tension:.4,pointRadius:3}]},options:{plugins:{legend:{...lo}},scales:{y:{ticks:{callback:v=>'₹'+v+'k',font:f10}}}}});
+const tot=fm.mix_short+fm.mix_medium+fm.mix_diploma+fm.mix_elearn||1,mv=[fm.mix_short,fm.mix_medium,fm.mix_diploma,fm.mix_elearn].map(v=>Math.round(v/tot*100));
+if(cMix){cMix.data.datasets[0].data=mv;cMix.update()}else cMix=new Chart(gid('cMix'),{type:'doughnut',data:{labels:['Short','Medium','Diploma','eLearning'],datasets:[{data:mv,backgroundColor:[nv,ac,ok,wn],borderWidth:2,borderColor:'#fff'}]},options:{plugins:{legend:{...lo}}}})}
+window.setScen=function(s){fm.scenario=s;saveFM();qsa('.scen').forEach(b=>b.classList.toggle('active',b.dataset.s===s))};
+window.xClose=function(){gid('xm').style.display='none'};
+window.xCopy=function(){navigator.clipboard.writeText(gid('xta').value).then(()=>{const b=gid('xcb');b.textContent='✓ Copied!';setTimeout(()=>b.textContent='Copy to Clipboard',2000)})};
+window.exportData=function(){const out={meta:{date:new Date().toISOString()},fields:{},fm};qsa('[data-k]').forEach(el=>{out.fields[el.dataset.k]=el.type==='checkbox'?el.checked:el.value});qsa('input[type=radio]:checked').forEach(r=>{out.fields['radio_'+r.name]=r.value});const json=JSON.stringify(out,null,2);let m=gid('xm');if(!m){m=document.createElement('div');m.id='xm';m.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(33,30,71,.85);display:flex;align-items:center;justify-content:center;padding:20px';m.innerHTML='<div style="background:#fff;border-radius:12px;padding:20px;width:100%;max-width:660px;max-height:80vh;display:flex;flex-direction:column;gap:10px"><div style="display:flex;justify-content:space-between;align-items:center"><b style="color:#2E2A5E">Export JSON — Copy &amp; Save</b><button onclick="xClose()" style="background:#E8472B;color:#fff;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-weight:700">✕</button></div><button id="xcb" onclick="xCopy()" style="background:#2E2A5E;color:#fff;border:none;border-radius:8px;padding:9px;font-weight:700;cursor:pointer">Copy to Clipboard</button><textarea id="xta" style="flex:1;min-height:280px;font-family:monospace;font-size:11px;border:1px solid #ddd;border-radius:8px;padding:8px;resize:none"></textarea></div>';document.body.appendChild(m);}gid('xta').value=json;m.style.display='flex';};
+window.printPage=function(){try{window.parent.print()}catch(e){window.print()}};
+window.importData=function(e){const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=function(ev){try{const d=JSON.parse(ev.target.result);if(d.fields){Object.entries(d.fields).forEach(([k,v])=>{if(k.startsWith('radio_')){const name=k.replace('radio_','');const el=document.querySelector('input[type=radio][name="'+name+'"][value="'+v+'"]');if(el)el.checked=true;}else{const el=document.querySelector('[data-k="'+k+'"]');if(el){if(el.type==='checkbox')el.checked=!!v;else el.value=v;}}});}if(d.fm){Object.assign(fm,d.fm);saveFM();restoreFM();renderRamp();updateCharts();}updateProg();showToast('Data imported successfully');}catch(err){alert('Invalid JSON file.');}e.target.value='';};r.readAsText(file);};
+window.clearInputs=function(){if(!confirm('Clear all inputs? This cannot be undone.'))return;qsa('[data-k]').forEach(el=>{if(el.type==='checkbox')el.checked=false;else el.value='';});qsa('input[type=radio]').forEach(el=>el.checked=false);Object.keys(fm).forEach(k=>{if(typeof fm[k]==='number')fm[k]=0;else if(typeof fm[k]==='string')fm[k]='';});saveFM();restoreFM();renderRamp();updateCharts();updateProg();localStorage.removeItem('exceedoo_store');showToast('All inputs cleared');};
+restoreStore();restoreFM();renderRamp();wireEvents();updateCharts();updateProg();
+</script>
