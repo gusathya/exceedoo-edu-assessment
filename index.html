@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Exceedoo Education Business Assessment</title>
+</head>
+<body>
 <style>
 :root{--navy:#2E2A5E;--navy-deep:#211e47;--accent:#E8472B;--ok:#1f9d55;--warn:#d98a0b;--bg:#f5f6fa;--card:#fff;--line:#e6e8f0;--text:#23233a;--muted:#6b6e85;--radius:13px;--shadow:0 1px 3px rgba(33,30,71,.06),0 8px 24px rgba(33,30,71,.07)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -496,4 +504,7 @@ window.printPage=function(){try{window.parent.print()}catch(e){window.print()}};
 window.importData=function(e){const file=e.target.files[0];if(!file)return;const r=new FileReader();r.onload=function(ev){try{const d=JSON.parse(ev.target.result);if(d.fields){Object.entries(d.fields).forEach(([k,v])=>{if(k.startsWith('radio_')){const name=k.replace('radio_','');const el=document.querySelector('input[type=radio][name="'+name+'"][value="'+v+'"]');if(el)el.checked=true;}else{const el=document.querySelector('[data-k="'+k+'"]');if(el){if(el.type==='checkbox')el.checked=!!v;else el.value=v;}}});}if(d.fm){Object.assign(fm,d.fm);saveFM();restoreFM();renderRamp();updateCharts();}updateProg();showToast('Data imported successfully');}catch(err){alert('Invalid JSON file.');}e.target.value='';};r.readAsText(file);};
 window.clearInputs=function(){if(!confirm('Clear all inputs? This cannot be undone.'))return;qsa('[data-k]').forEach(el=>{if(el.type==='checkbox')el.checked=false;else el.value='';});qsa('input[type=radio]').forEach(el=>el.checked=false);Object.keys(fm).forEach(k=>{if(typeof fm[k]==='number')fm[k]=0;else if(typeof fm[k]==='string')fm[k]='';});saveFM();restoreFM();renderRamp();updateCharts();updateProg();localStorage.removeItem('exceedoo_store');showToast('All inputs cleared');};
 restoreStore();restoreFM();renderRamp();wireEvents();updateCharts();updateProg();
+(function(){function sendH(){try{var h=Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);window.parent.postMessage({frameHeight:h},'*');}catch(e){}}new MutationObserver(sendH).observe(document.body,{subtree:true,childList:true,attributes:true});window.addEventListener('load',sendH);sendH();})();
 </script>
+</body>
+</html>
