@@ -103,7 +103,8 @@ main{flex:1;min-width:0}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:28px 20px 50px;border-top:1px solid var(--line);margin-top:10px}
 footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700}
 @media(max-width:900px){nav.side{display:none}.wrap{padding:16px}.cg{grid-template-columns:1fr}.rec-grid{grid-template-columns:1fr}}
-html,body{height:auto;overflow-y:auto;overflow-x:hidden}
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 .sec{scroll-margin-top:80px}
 .ctog{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;border:none;font-size:17px;font-weight:700;cursor:pointer;line-height:1;font-family:monospace;flex-shrink:0;transition:.15s}
 .ctog:hover{background:var(--accent)}
