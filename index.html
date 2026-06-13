@@ -95,6 +95,11 @@ main{flex:1;min-width:0}
 footer{text-align:center;color:var(--muted);font-size:12px;padding:28px 20px 50px;border-top:1px solid var(--line);margin-top:10px}
 footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700}
 @media(max-width:900px){nav.side{display:none}.wrap{padding:16px}.cg{grid-template-columns:1fr}.rec-grid{grid-template-columns:1fr}}
+html,body{height:auto;overflow-y:auto;overflow-x:hidden}
+.sec{scroll-margin-top:80px}
+.ctog{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;border:none;font-size:17px;font-weight:700;cursor:pointer;line-height:1;font-family:monospace;flex-shrink:0;transition:.15s}
+.ctog:hover{background:var(--accent)}
+.coll-note{font-size:11px;color:var(--accent);font-style:italic;font-weight:600;margin:-4px 0 14px}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -198,17 +203,13 @@ footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700
         <tr><td>Who is the ideal student profile?</td><td><textarea data-k="3_student"></textarea></td></tr>
         <tr><td>Why should students trust this institution?</td><td><textarea data-k="3_trust"></textarea></td></tr>
         <tr><td>What emotional space does the brand own?</td><td><textarea data-k="3_emotion"></textarea></td></tr>
-        <tr><td>What is the brand NOT?</td><td><textarea data-k="3_not"></textarea></td></tr>
       </tbody></table>
       <div class="sub-hd">3.2 Visual Identity Audit</div>
       <table class="atbl"><thead><tr><th>Visual Component</th><th>Aesthetic Score & Market Alignment Notes</th></tr></thead><tbody>
         <tr><td>Logo Quality</td><td><input data-k="3_logo"/></td></tr>
         <tr><td>Website Appeal</td><td><input data-k="3_website"/></td></tr>
         <tr><td>Marketing Collateral Quality</td><td><input data-k="3_collat"/></td></tr>
-        <tr><td>Photography / Video Content</td><td><input data-k="3_photo"/></td></tr>
         <tr><td>Brand Consistency</td><td><input data-k="3_consist"/></td></tr>
-        <tr><td>Premium Perception</td><td><input data-k="3_premium"/></td></tr>
-        <tr><td>Modern Appeal</td><td><input data-k="3_modern"/></td></tr>
       </tbody></table>
       <div class="sub-hd">3.3 Competitive Positioning</div>
       <table class="atbl"><thead><tr><th>Competitive Parameter</th><th>Market Variance vs Top Tier Alternatives</th></tr></thead><tbody>
@@ -216,7 +217,6 @@ footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700
         <tr><td>Fee Comparison</td><td><input data-k="3_fees"/></td></tr>
         <tr><td>Reach / Enrolment Strength</td><td><input data-k="3_reach"/></td></tr>
         <tr><td>Curriculum Comparison</td><td><input data-k="3_curric"/></td></tr>
-        <tr><td>Brand Recall</td><td><input data-k="3_recall"/></td></tr>
         <tr><td>Programme Differentiation</td><td><input data-k="3_progdiff"/></td></tr>
       </tbody></table>
     </div>
@@ -297,15 +297,15 @@ footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700
       </tbody></table>
       <div class="sub-hd">6.2 Growth Investment Readiness</div>
       <table class="atbl"><thead><tr><th>CapEx / OpEx Focus Area</th><th>Available Capital / Projected Allocation</th></tr></thead><tbody>
-        <tr><td>Branding Budget</td><td><input data-k="6_brand_bud"/></td></tr>
-        <tr><td>Enrolment / Sales Budget</td><td><input data-k="6_sales_bud"/></td></tr>
-        <tr><td>Faculty Building Budget</td><td><input data-k="6_faculty_bud"/></td></tr>
         <tr><td>Marketing Budget</td><td><input data-k="6_mkt_bud"/></td></tr>
-        <tr><td>Technology / LMS Budget</td><td><input data-k="6_tech_bud"/></td></tr>
-        <tr><td>Infrastructure Budget</td><td><input data-k="6_infra_bud"/></td></tr>
-        <tr><td>Content Development Budget</td><td><input data-k="6_content_bud"/></td></tr>
+        <tr><td>PR / Advertising Budget</td><td><input data-k="6_pr_bud"/></td></tr>
+        <tr><td>Brand Assets Development Budget</td><td><input data-k="6_brand_bud"/></td></tr>
+        <tr><td>Infra Budget</td><td><input data-k="6_infra_bud"/></td></tr>
+        <tr><td>Tech / LMS Budget</td><td><input data-k="6_tech_bud"/></td></tr>
       </tbody></table>
-      <div class="sub-hd">6.3 Financial Discipline Check</div>
+      <div class="sub-hd" style="display:flex;align-items:center;justify-content:space-between">6.3 Financial Discipline Check <button class="ctog" id="tog63" onclick="toggleSec('body63','tog63')">+</button></div>
+      <div class="coll-note">(This will be a part of our assessment and report as an outcome.)</div>
+      <div id="body63" style="display:none">
       <table class="atbl"><thead><tr><th>Discipline Metric</th><th>Evaluator Assessment / Internal Controls Level</th></tr></thead><tbody>
         <tr><td>Fee Pricing Discipline</td><td><input data-k="6_fd_price"/></td></tr>
         <tr><td>Expense Control</td><td><input data-k="6_fd_expense"/></td></tr>
@@ -313,6 +313,7 @@ footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700
         <tr><td>Forecasting Capability</td><td><input data-k="6_fd_forecast"/></td></tr>
         <tr><td>Investment Mindset</td><td><input data-k="6_fd_invest"/></td></tr>
       </tbody></table>
+      </div>
       <div class="sub-hd">6.4 Live Financial Projection Dashboard</div>
       <div class="fin-dash">
         <h3>📊 Revenue & Profitability Model <span class="sub">— edit assumptions to refresh charts instantly</span></h3>
@@ -384,7 +385,10 @@ footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700
         <tr><td>Biggest Internal Inefficiency</td><td><textarea data-k="7_b_ineff"></textarea></td></tr>
       </tbody></table>
     </div>
-    <div class="sec" id="s8"><h2 class="sec-hd"><span class="ix">8</span>Market Readiness & Scale Potential</h2>
+    <div class="sec" id="s8">
+      <h2 class="sec-hd" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:10px"><span class="ix">8</span>Market Readiness & Scale Potential</span><button class="ctog" id="tog8" onclick="toggleSec('body8','tog8')">+</button></h2>
+      <div class="coll-note">(This will be a part of our assessment and report as an outcome.)</div>
+      <div id="body8" style="display:none">
       <div class="sub-hd">8.1 Scale Readiness</div>
       <table class="atbl"><thead><tr><th>Readiness Pillar</th><th>Vulnerability vs Scale Enablement Analysis</th></tr></thead><tbody>
         <tr><td>Course-Market Fit Status</td><td><input data-k="8_cmf"/></td></tr>
@@ -403,8 +407,12 @@ footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700
         <tr><td>What unfair advantage does it possess?</td><td><textarea data-k="8_advantage"></textarea></td></tr>
         <tr><td>Is the institution ready for immediate transformation?</td><td><textarea data-k="8_ready"></textarea></td></tr>
       </tbody></table>
+      </div>
     </div>
-    <div class="sec" id="s9"><h2 class="sec-hd"><span class="ix">9</span>Exceedoo Internal Evaluation</h2>
+    <div class="sec" id="s9">
+      <h2 class="sec-hd" style="justify-content:space-between"><span style="display:flex;align-items:center;gap:10px"><span class="ix">9</span>Exceedoo Internal Evaluation</span><button class="ctog" id="tog9" onclick="toggleSec('body9','tog9')">+</button></h2>
+      <div class="coll-note">(This will be a part of our assessment and report as an outcome.)</div>
+      <div id="body9" style="display:none">
       <div style="font-size:13px;color:var(--accent);font-weight:600;margin-bottom:14px;font-family:'Montserrat',sans-serif">⚠ To be completed by Exceedoo evaluators only</div>
       <div class="sub-hd">9.1 Scoring Dashboard</div>
       <table class="atbl"><thead><tr><th>Exceedoo Metric</th><th>Internal Risk & Potential Tier Alignment</th></tr></thead><tbody>
@@ -417,6 +425,7 @@ footer .ft{font-family:'Montserrat',sans-serif;color:var(--navy);font-weight:700
         <tr><td>Market Opportunity</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_mo" value="Limited"/> Limited</label><label class="ri"><input type="radio" name="sc_mo" value="Moderate"/> Moderate</label><label class="ri"><input type="radio" name="sc_mo" value="Expansive"/> Expansive</label><span>Notes:</span><input data-k="9_mo" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
         <tr><td>Operational Stability</td><td><div class="sr"><label class="ri"><input type="radio" name="sc_os" value="Unstable"/> Unstable</label><label class="ri"><input type="radio" name="sc_os" value="Developing"/> Developing</label><label class="ri"><input type="radio" name="sc_os" value="Robust"/> Robust</label><span>Notes:</span><input data-k="9_os" style="flex:1;border:1px solid var(--line);border-radius:6px;padding:5px 8px;font-size:12px"/></div></td></tr>
       </tbody></table>
+      </div>
     </div>
     <div class="sec" id="srec"><h2 class="sec-hd"><span class="ix" style="background:var(--ok)">✓</span>Final Recommendation Matrix</h2>
       <div class="rec-grid">
@@ -479,6 +488,7 @@ if(cCash){cCash.data.datasets[0].data=m.caA;cCash.update()}else cCash=new Chart(
 const tot=fm.mix_short+fm.mix_medium+fm.mix_diploma+fm.mix_elearn||1,mv=[fm.mix_short,fm.mix_medium,fm.mix_diploma,fm.mix_elearn].map(v=>Math.round(v/tot*100));
 if(cMix){cMix.data.datasets[0].data=mv;cMix.update()}else cMix=new Chart(gid('cMix'),{type:'doughnut',data:{labels:['Short','Medium','Diploma','eLearning'],datasets:[{data:mv,backgroundColor:[nv,ac,ok,wn],borderWidth:2,borderColor:'#fff'}]},options:{plugins:{legend:{...lo}}}})}
 window.setScen=function(s){fm.scenario=s;saveFM();qsa('.scen').forEach(b=>b.classList.toggle('active',b.dataset.s===s))};
+window.toggleSec=function(id,btnId){var el=document.getElementById(id);var btn=document.getElementById(btnId);if(!el)return;if(el.style.display==='none'){el.style.display='';if(btn)btn.textContent='−'}else{el.style.display='none';if(btn)btn.textContent='+'}};
 window.xClose=function(){gid('xm').style.display='none'};
 window.xCopy=function(){navigator.clipboard.writeText(gid('xta').value).then(()=>{const b=gid('xcb');b.textContent='✓ Copied!';setTimeout(()=>b.textContent='Copy to Clipboard',2000)})};
 window.exportData=function(){const out={meta:{date:new Date().toISOString()},fields:{},fm};qsa('[data-k]').forEach(el=>{out.fields[el.dataset.k]=el.type==='checkbox'?el.checked:el.value});qsa('input[type=radio]:checked').forEach(r=>{out.fields['radio_'+r.name]=r.value});const json=JSON.stringify(out,null,2);let m=gid('xm');if(!m){m=document.createElement('div');m.id='xm';m.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(33,30,71,.85);display:flex;align-items:center;justify-content:center;padding:20px';m.innerHTML='<div style="background:#fff;border-radius:12px;padding:20px;width:100%;max-width:660px;max-height:80vh;display:flex;flex-direction:column;gap:10px"><div style="display:flex;justify-content:space-between;align-items:center"><b style="color:#2E2A5E">Export JSON — Copy &amp; Save</b><button onclick="xClose()" style="background:#E8472B;color:#fff;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-weight:700">✕</button></div><button id="xcb" onclick="xCopy()" style="background:#2E2A5E;color:#fff;border:none;border-radius:8px;padding:9px;font-weight:700;cursor:pointer">Copy to Clipboard</button><textarea id="xta" style="flex:1;min-height:280px;font-family:monospace;font-size:11px;border:1px solid #ddd;border-radius:8px;padding:8px;resize:none"></textarea></div>';document.body.appendChild(m);}gid('xta').value=json;m.style.display='flex';};
