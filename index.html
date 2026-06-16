@@ -323,7 +323,51 @@ body{height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:to
         <tr><td>Investment Mindset</td><td><input data-k="6_fd_invest"/></td></tr>
       </tbody></table>
       </div>
-      <div class="sub-hd">6.4 Live Financial Projection Dashboard</div>
+      <div class="sub-hd" style="display:flex;align-items:center;justify-content:space-between">6.4 Live Financial Projection Dashboard <button class="ctog" id="togFml" onclick="toggleSec('bodyFml','togFml')" style="font-size:12px;width:auto;border-radius:8px;padding:3px 10px">📐 Formula</button></div>
+      <div id="bodyFml" style="display:none;background:#f0f1fa;border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;margin-bottom:14px;font-size:12.5px;line-height:1.8;color:var(--text)">
+        <div style="font-weight:700;color:var(--navy);font-family:'Montserrat',sans-serif;margin-bottom:10px">📐 How the Model Calculates</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px 24px">
+          <div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">Scenario Multiplier</div>
+            Base = 1.0× · Conservative = 0.7× · Aggressive = 1.3×<br/>
+            <span style="color:var(--muted)">Applied to student count only (not fees or costs)</span>
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">Blended Avg Fee</div>
+            (Short Fee × Short%) + (Medium Fee × Medium%)<br/>+ (Diploma Fee × Diploma%) + (eLearning Fee × eLearning%)
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">Students / Month</div>
+            Target Students × Scenario × Ramp[month]%<br/>
+            <span style="color:var(--muted)">Ramp grows from M1→M12 (default 20%→100%)</span>
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">Effective Collection Rate</div>
+            Cash Recovery% + NBFC% × (100 − Cash%)<br/>
+            <span style="color:var(--muted)">e.g. 20% cash + 70% NBFC × 80% = 76%</span>
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">Monthly Revenue</div>
+            Students × Avg Fee × Effective Collection Rate
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">Monthly Cost</div>
+            Faculty + Venue + Content + Admin + Sales<br/>+ (Students × ₹500 variable)
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">Monthly Gross Profit</div>
+            Revenue − Cost
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--accent);margin-bottom:4px">Cumulative Cash</div>
+            Starts at −Seed Investment, adds GP each month.<br/>
+            <span style="color:var(--muted)">Break-even = first month cumulative ≥ 0</span>
+          </div>
+        </div>
+        <div style="margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);color:var(--muted)">
+          <strong style="color:var(--navy)">Year-1 KPIs:</strong> Revenue & GP = sum of 12 months · GP Margin = GP ÷ Revenue · Students/Year = Target × Scenario × 12 (peak, pre-ramp)
+        </div>
+      </div>
       <div class="fin-dash">
         <h3>📊 Revenue & Profitability Model <span class="sub">— edit assumptions to refresh charts instantly</span></h3>
         <div class="st"><button class="scen active" data-s="base" onclick="setScen('base')">Base</button><button class="scen" data-s="conservative" onclick="setScen('conservative')">Conservative</button><button class="scen" data-s="aggressive" onclick="setScen('aggressive')">Aggressive</button></div>
