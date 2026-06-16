@@ -460,7 +460,7 @@ body{height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:to
 (function(){
   const PASS='Exceedoo2025',SK='exc_auth_v1';
   const gate=document.getElementById('gate');
-  function unlock(){gate.style.display='none';document.getElementById('page-content').style.display='block';try{window.scrollTo(0,0)}catch(e){}try{window.parent.scrollTo(0,0)}catch(e){}}
+  function unlock(){gate.style.display='none';document.getElementById('page-content').style.display='block';try{window.scrollTo(0,0)}catch(e){}try{window.parent.scrollTo(0,0)}catch(e){}setTimeout(function(){try{if(window.cRev){cRev.destroy();cRev=null;}}catch(e){}try{if(window.cMix){cMix.destroy();cMix=null;}}catch(e){}try{if(window.cPL){cPL.destroy();cPL=null;}}catch(e){}try{if(window.cCash){cCash.destroy();cCash=null;}}catch(e){}try{if(window.updateCharts)updateCharts();}catch(e){}try{if(window.restoreFM)restoreFM();}catch(e){}try{if(window.renderRamp)renderRamp();}catch(e){}try{if(window.updateProg)updateProg();}catch(e){}},250);}
   try{if(sessionStorage.getItem(SK)==='1'){unlock();return}}catch(e){}
   window.gLogin=function(){
     const v=document.getElementById('gpw').value;
