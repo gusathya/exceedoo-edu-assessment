@@ -86,6 +86,9 @@ main{flex:1;min-width:0}
 .ff input[type=number]{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-family:'Source Sans 3',sans-serif;font-size:13px;color:var(--text);background:#fcfcfe}
 .ff input:focus{outline:none;border-color:var(--navy)}
 .ff .fh{font-size:10px;color:var(--muted);margin-top:2px}
+.ff{position:relative}
+.ff[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:0;background:#2E2A5E;color:#fff;padding:8px 11px;border-radius:8px;font-size:11.5px;line-height:1.55;white-space:normal;width:230px;z-index:200;font-family:'Source Sans 3',sans-serif;pointer-events:none;box-shadow:0 4px 16px rgba(33,30,71,.25);font-weight:400}
+.ff[data-tip]:hover::before{content:'';position:absolute;bottom:calc(100% + 3px);left:16px;border:5px solid transparent;border-top-color:#2E2A5E;z-index:200;pointer-events:none}
 .st{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
 .scen{border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;color:var(--navy);transition:.13s;font-family:'Montserrat',sans-serif}
 .scen.active{background:var(--navy);color:#fff;border-color:var(--navy)}
@@ -388,34 +391,34 @@ body{height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:to
         <h3 style="margin-top:4px">⚙️ Assumptions <span class="sub">— all fields editable</span></h3>
         <div class="fdiv">Course Fees (₹)</div>
         <div class="fi">
-          <div class="ff"><label>Short Course Fee</label><input type="number" data-fk="fee_short"/></div>
-          <div class="ff"><label>Medium Course Fee</label><input type="number" data-fk="fee_medium"/></div>
-          <div class="ff"><label>Diploma / Advanced Fee</label><input type="number" data-fk="fee_diploma"/></div>
-          <div class="ff"><label>eLearning / Module Fee</label><input type="number" data-fk="fee_elearn"/></div>
+          <div class="ff" data-tip="Fee charged per student for short-duration courses (days to 4 weeks)."><label>Short Course Fee</label><input type="number" data-fk="fee_short"/></div>
+          <div class="ff" data-tip="Fee charged per student for medium-duration courses (1–6 months)."><label>Medium Course Fee</label><input type="number" data-fk="fee_medium"/></div>
+          <div class="ff" data-tip="Fee charged per student for diploma or advanced programmes (6–24 months)."><label>Diploma / Advanced Fee</label><input type="number" data-fk="fee_diploma"/></div>
+          <div class="ff" data-tip="Fee charged per student for online or self-paced modules."><label>eLearning / Module Fee</label><input type="number" data-fk="fee_elearn"/></div>
         </div>
         <div class="fdiv">Course Mix (% of monthly students)</div>
         <div class="fi">
-          <div class="ff"><label>Short Course %</label><input type="number" data-fk="mix_short"/></div>
-          <div class="ff"><label>Medium Course %</label><input type="number" data-fk="mix_medium"/></div>
-          <div class="ff"><label>Diploma %</label><input type="number" data-fk="mix_diploma"/></div>
-          <div class="ff"><label>eLearning %</label><input type="number" data-fk="mix_elearn"/></div>
+          <div class="ff" data-tip="% of monthly students enrolling in short courses. All 4 mix % must add up to 100."><label>Short Course %</label><input type="number" data-fk="mix_short"/></div>
+          <div class="ff" data-tip="% of monthly students enrolling in medium courses. All 4 mix % must add up to 100."><label>Medium Course %</label><input type="number" data-fk="mix_medium"/></div>
+          <div class="ff" data-tip="% of monthly students enrolling in diploma / advanced courses. All 4 mix % must add up to 100."><label>Diploma %</label><input type="number" data-fk="mix_diploma"/></div>
+          <div class="ff" data-tip="% of monthly students enrolling in eLearning modules. All 4 mix % must add up to 100."><label>eLearning %</label><input type="number" data-fk="mix_elearn"/></div>
         </div>
         <div class="fdiv">Enrolment & Recovery</div>
         <div class="fi">
-          <div class="ff"><label>Target Students / Month</label><input type="number" data-fk="students_pm"/></div>
-          <div class="ff"><label>Financed Students %</label><input type="number" data-fk="nbfc_pct"/></div>
-          <div class="ff"><label>Cash Recovery Month 1 %</label><input type="number" data-fk="recovery_pct"/></div>
-          <div class="ff"><label>Seed Investment (₹)</label><input type="number" data-fk="seed"/></div>
+          <div class="ff" data-tip="Your steady-state monthly intake at full capacity (Month 12 of ramp). This is an actual headcount, not a percentage."><label>Target Students / Month</label><input type="number" data-fk="students_pm"/></div>
+          <div class="ff" data-tip="% of students paying via NBFC / education loan. Their fee is collected through the lender, not directly from the student."><label>Financed Students %</label><input type="number" data-fk="nbfc_pct"/></div>
+          <div class="ff" data-tip="Of the non-NBFC (cash-paying) students, what % pay their full fee in Month 1. Remainder is assumed collected later."><label>Cash Recovery Month 1 %</label><input type="number" data-fk="recovery_pct"/></div>
+          <div class="ff" data-tip="Capital invested at the start of operations. This sets where your cumulative cash position begins — as a negative number that GP must recover."><label>Seed Investment (₹)</label><input type="number" data-fk="seed"/></div>
         </div>
         <div class="fdiv">Monthly Operating Costs (₹)</div>
         <div class="fi">
-          <div class="ff"><label>Faculty / Trainer</label><input type="number" data-fk="cost_faculty"/></div>
-          <div class="ff"><label>Venue / Infrastructure</label><input type="number" data-fk="cost_venue"/></div>
-          <div class="ff"><label>Content / LMS</label><input type="number" data-fk="cost_content"/></div>
-          <div class="ff"><label>Admin / Operations</label><input type="number" data-fk="cost_admin"/></div>
-          <div class="ff"><label>Sales & Marketing</label><input type="number" data-fk="cost_sales"/></div>
+          <div class="ff" data-tip="Fixed monthly cost for all teaching and training staff, regardless of student count."><label>Faculty / Trainer</label><input type="number" data-fk="cost_faculty"/></div>
+          <div class="ff" data-tip="Fixed monthly cost for premises, utilities, and physical infrastructure."><label>Venue / Infrastructure</label><input type="number" data-fk="cost_venue"/></div>
+          <div class="ff" data-tip="Fixed monthly cost for learning materials, platform licences, and content tools."><label>Content / LMS</label><input type="number" data-fk="cost_content"/></div>
+          <div class="ff" data-tip="Fixed monthly cost for back-office staff and operational overheads."><label>Admin / Operations</label><input type="number" data-fk="cost_admin"/></div>
+          <div class="ff" data-tip="Fixed monthly cost for your sales and marketing team. Variable ad spend should be added here too."><label>Sales & Marketing</label><input type="number" data-fk="cost_sales"/></div>
         </div>
-        <div class="fdiv">Enrolment Ramp — % of target, Month 1–12</div>
+        <div class="fdiv" title="Each value is the % of your Target Students/Month actually enrolled that month. Start low (20%) to reflect slow launch, build to 100% by Month 12 when fully operational.">Enrolment Ramp — % of target, Month 1–12 <span style="font-size:10px;color:var(--muted);font-weight:400">(hover for help)</span></div>
         <div class="rr" id="ramp-row"></div>
       </div>
     </div>
